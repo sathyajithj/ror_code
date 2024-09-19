@@ -1,0 +1,54 @@
+class PremierLeague
+  def self.main
+    tr = Array.new(20)
+
+    tr[0] = LeagueResult.new("Arsenal", 79, 36)
+    tr[1] = LeagueResult.new("Liverpool", 67, 30)
+    tr[2] = LeagueResult.new("Manchester_U", 87, 45)
+    tr[3] = LeagueResult.new("Newcastle", 74, 52)
+    tr[4] = LeagueResult.new("Leeds", 53, 37)
+    tr[5] = LeagueResult.new("Chelsea", 66, 38)
+    tr[6] = LeagueResult.new("West_Ham", 48, 57)
+    tr[7] = LeagueResult.new("Aston_Villa", 46, 47)
+    tr[8] = LeagueResult.new("Tottenham", 49, 53)
+    tr[9] = LeagueResult.new("Blackburn", 55, 51)
+    tr[10] = LeagueResult.new("Southampton", 46, 54)
+    tr[11] = LeagueResult.new("Middlesbrough", 35, 47)
+    tr[12] = LeagueResult.new("Fulham", 36, 44)
+    tr[13] = LeagueResult.new("Charlton", 38, 49)
+    tr[14] = LeagueResult.new("Everton", 45, 57)
+    tr[15] = LeagueResult.new("Bolton", 44, 62)
+    tr[16] = LeagueResult.new("Sunderland", 29, 51)
+    tr[17] = LeagueResult.new("Ipswich", 41, 64)
+    tr[18] = LeagueResult.new("Derby", 33, 63)
+    tr[19] = LeagueResult.new("Leicester", 30, 64)
+
+    tr.sort!
+
+   puts tr.first
+  end
+end
+
+class LeagueResult
+  include Comparable
+
+  attr_reader :team_name, :goals_scored, :goals_against, :goal_difference
+
+  def initialize(tn, goals_in, goals_out)
+    @team_name = tn
+    @goals_scored = goals_in
+    @goals_against = goals_out
+    @goal_difference = (goals_in - goals_out).abs
+  end
+
+  def <=>(other)
+    goal_difference <=> other.goal_difference
+  end
+
+  def to_s
+    "name=#{team_name},diff=#{goal_difference}"
+  end
+end
+
+PremierLeague.main
+
