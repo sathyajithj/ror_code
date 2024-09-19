@@ -34,21 +34,20 @@ class LeagueResult
 
   attr_reader :team_name, :goals_scored, :goals_against, :goal_difference
 
-  def initialize(tn, goals_in, goals_out)
-    @team_name = tn
+  def initialize(team, goals_in, goals_out)
+    @team_name = team
     @goals_scored = goals_in
     @goals_against = goals_out
     @goal_difference = (goals_in - goals_out).abs
   end
 
-  def <=>(other)
-    goal_difference <=> other.goal_difference
+  def <=>(other_team)
+    goal_difference <=> other_team.goal_difference
   end
 
   def to_s
-    "name=#{team_name},diff=#{goal_difference}"
+    "name=#{team_name},difference=#{goal_difference}"
   end
 end
 
 PremierLeague.main
-
