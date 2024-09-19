@@ -1,0 +1,26 @@
+
+weather_data = File.new("w_data.dat")
+weather_data_array = []
+
+weather_data_array = weather_data.map do |x|
+  x.split(" ")
+end 
+
+weather_data_array.shift
+puts weather_data_array
+
+smallest_difference = weather_data_array[0][1].to_i - weather_data_array[0][2].to_i
+temperature_difference = 0
+smallest_day = 0
+
+weather_data_array.each do |array|
+  
+  temperature_difference = array[1].to_i - array[2].to_i 
+  puts "Day Number: #{array[0]} Temperature difference: #{temperature_difference}"
+  if temperature_difference < smallest_difference
+    smallest_difference = temperature_difference
+    smallest_day = array[0].to_i
+  end
+end
+
+puts "The smallest difference was in day #{smallest_day}."
